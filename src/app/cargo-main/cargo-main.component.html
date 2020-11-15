@@ -1,0 +1,62 @@
+<div class="container">
+  
+  <form #form="ngForm">
+    <p-fieldset legend="Input">
+
+      <div class="form-group">
+        <textarea id="input" name="input" #input class="form-control" rows="5" [(ngModel)]="cargoRequest.input" pInputTextarea autoResize="autoResize"></textarea>
+      </div>
+
+      <div class="form-group">
+          <div class="row">
+            <div class="col-sm" style="display: flex;">
+              <div style="width: 200px;">
+                <strong>Weight position</strong>
+              </div>
+              <div class="col-sm">
+                <p-radioButton name="weightPosition" id="firstRow" value="firstRow" label="First line" [(ngModel)]="cargoRequest.weightPosition"></p-radioButton>
+                &nbsp;&nbsp;
+                <p-radioButton name="weightPosition" id="lastRow" value="lastRow" label="Last line" [(ngModel)]="cargoRequest.weightPosition"></p-radioButton>                
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm" style="display: flex;">
+              <div style="width: 200px;">
+                <strong>Line format</strong>
+              </div>
+              <div class="col-sm">
+                <p-radioButton name="pieceFormat" id="amountFirst" value="amountFirst" label="A LxWxH" title="Amount Length x Width x Height" [(ngModel)]="cargoRequest.pieceFormat"></p-radioButton>
+                &nbsp;
+                <p-radioButton name="pieceFormat" id="noAmount" value="noAmount" label="LxWxH" title="No Amount Length x Width x Height. Add default amount of 1." [(ngModel)]="cargoRequest.pieceFormat"></p-radioButton>
+                &nbsp;
+                <p-radioButton name="pieceFormat" id="orderedList" value="orderedList" label="List A LxWxH" title="Numbered list of Amount Length x Width x Height. Remove the list numbering." [(ngModel)]="cargoRequest.pieceFormat"></p-radioButton>
+                &nbsp;
+                <p-radioButton name="pieceFormat" id="orderedListNoAmount" value="orderedListNoAmount" label="List LxWxH"  title="Numbered list of No Amount Length x Width x Height. Remove the list numbering and add default amount of 1." [(ngModel)]="cargoRequest.pieceFormat"></p-radioButton>
+              </div>            
+            </div>
+        </div>
+      </div>
+
+      <button class="btn btn-block btn-primary" (click)="onSplit(form)">Split</button>
+      
+      <div [hidden]="!postError" 
+        class="alert alert-danger" > 
+        {{ postErrorMessage }} 
+      </div>
+
+  </p-fieldset>
+    <div *ngIf="parsed?.weight">
+        
+      <cg-parsed-section [parsed]='parsed'></cg-parsed-section>
+
+      <div>
+        <br />
+        <button class="btn btn-block btn-primary" (click)="reset()">Reset</button>
+      </div>
+  </div>
+  
+  <!-- {{ form.value | json }}  -->
+
+  </form>
+</div>

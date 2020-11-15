@@ -1,0 +1,28 @@
+<p-fieldset legend="calculations">
+    <div class="row">
+        <div class="col-sm">
+        <table class="table table-bordered table-hover table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Pieces</th>
+                <th scope="col">GWT</th>
+                <th scope="col">WGT/PCE</th>
+                <th scope="col">DENSITY</th>
+                <th scope="row">CBM</th>
+                <th scope="row">CWT</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{calculations?.numberOfPieces}}</td>
+                <td>{{calculations?.grossWeight}}</td>
+                <td>{{calculations?.weightPerPiece | number:'1.3-3'}}</td>
+                <td>{{calculations?.density | number:'1.5-5'}}</td>
+                <td>{{calculations?.volume | number:'1.5-5'}}</td>
+                <td>{{calculations?.chargeableWeight | number:'1.5-5'}}</td>
+            </tr>
+            </tbody>
+        </table>  
+        </div>
+    </div>
+</p-fieldset>

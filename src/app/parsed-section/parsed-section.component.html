@@ -1,0 +1,81 @@
+<p-fieldset legend="Parsed">
+  <div  class="form-group">
+
+    <!-- PARSED WEIGHT -->
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="weightOriginalValue"><strong>Original</strong></label>
+                <input
+                id="weightOriginalValue"
+                name="weightOriginalValue"
+                class="form-control"
+                [(ngModel)]="parsed?.weight.originalValue"
+                disabled
+                />
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="form-group">
+                <label for="weightValue"><strong>Weight</strong></label>
+                <input
+                id="weightValue"
+                name="weightValue"
+                class="form-control"
+                [(ngModel)]="parsed?.weight.value"
+                type="number"
+                />
+            </div>
+        </div>
+    </div>
+
+    <!-- PARSED LINES -->
+    <table class="table table-bordered table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 250px;">Original</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Length</th>
+            <th scope="col">Width</th>
+            <th scope="col">Height</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let piece of parsed?.pieces; let i = index">
+            <td><input id="originalValue{{i}}" name="originalValue{{i}}" [(ngModel)]="piece.originalValue"  placeholder="original value" class="form-control" disabled></td>
+            <td>
+              <input id="amount{{i}}" name="amount{{i}}" [(ngModel)]="piece.amount" placeholder="amount" class="form-control" type="number"></td>
+            <td>
+              <div class="input-group">
+                <input id="length{{i}}" name="length{{i}}" [(ngModel)]="piece.length" placeholder="length" class="form-control" type="number">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">cm</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <input id="width{{i}}" name="width{{i}}" [(ngModel)]="piece.width" placeholder="width" class="form-control" type="number">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">cm</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <input id="height{{i}}" name="height{{i}}" [(ngModel)]="piece.height" placeholder="height" class="form-control" type="number">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">cm</span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <button class="btn btn-block btn-primary" (click)="calculate()">Calculate (again)</button>
+
+</p-fieldset>
+
+<cg-calculations-section [calculations]='calculations'></cg-calculations-section>
