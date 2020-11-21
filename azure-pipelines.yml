@@ -19,16 +19,16 @@ steps:
       path: '$(System.DefaultWorkingDirectory)/node_modules'
   
   - task: Npm@0
-    displayName: 'npm install'
+    displayName: 'npm ci'
     inputs:
       arguments: '--force'
 
   - task: Npm@1
-    displayName: 'npm install angular cli'
+    displayName: 'npm ci angular cli'
     inputs:
       command: custom
       verbose: false
-      customCommand: 'install @angular/cli'
+      customCommand: 'ci @angular/cli'
 
   - task: Npm@1
     displayName: 'npm build'
