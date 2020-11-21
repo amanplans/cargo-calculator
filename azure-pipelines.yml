@@ -17,11 +17,13 @@ steps:
     inputs:
       key: '**/package-lock.json, !**/node_modules/**/package-lock.json, !**/.*/**/package-lock.json'
       path: '$(System.DefaultWorkingDirectory)/node_modules'
+      cacheHitVar: CACHE_RESTORED
   
   - task: Npm@0
     displayName: 'npm ci'
     inputs:
       arguments: '--force'
+    condition: ne(variables.CACHE_RESTORED, 'true')
 
   - task: Npm@1
     displayName: 'npm ci angular cli'
@@ -29,6 +31,7 @@ steps:
       command: custom
       verbose: false
       customCommand: 'ci @angular/cli'
+    condition: ne(variables.CACHE_RESTORED, 'true')
 
   - task: Npm@1
     displayName: 'npm build'
